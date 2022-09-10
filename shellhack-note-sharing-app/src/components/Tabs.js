@@ -6,8 +6,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import "./Tabs.css";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
-
+import Note from "./Note";
 
 export default function Tabs() {
   const [value, setValue] = React.useState("1");
@@ -31,13 +30,22 @@ export default function Tabs() {
           </div>
         </Box>
         <TabPanel value="1" className="tab">
-          <div className="note-container"></div>
+          <div className="note-container">
+            <Note />
+          </div>
         </TabPanel>
         <TabPanel value="2" className="tab">
-          <div className="note-container"></div>
+          <div className="note-container">
+            <Note />
+            <Note />
+          </div>
         </TabPanel>
         <TabPanel value="3" className="tab">
-          <div className="note-container"></div>
+          <div className="note-container">
+            <Note />
+            <Note />
+            <Note />
+          </div>
         </TabPanel>
       </TabContext>
     </div>
