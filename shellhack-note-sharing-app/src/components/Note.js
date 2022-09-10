@@ -8,7 +8,6 @@ import Typography from "@mui/material/Typography";
 import MobileScreenShareIcon from "@mui/icons-material/MobileScreenShare";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Tooltip from "@mui/material/Tooltip";
-
 import "./Note.css";
 import { Icon } from "@mui/material";
 
