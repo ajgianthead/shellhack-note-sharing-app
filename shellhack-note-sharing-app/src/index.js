@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -22,6 +23,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -36,4 +38,4 @@ root.render(
   </BrowserRouter>
 );
 
-export { auth };
+export { auth, db };

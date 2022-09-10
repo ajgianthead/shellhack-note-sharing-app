@@ -1,0 +1,19 @@
+.tab1{
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+.tab{
+    margin-left: 40px;
+    margin-right: 40px;
+    border: red 2px solid;
+    height: 60vh;
+}
+.note-container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border: black 2px solid;
+    overflow-y: auto;
+}

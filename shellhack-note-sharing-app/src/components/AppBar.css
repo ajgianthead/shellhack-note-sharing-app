@@ -1,0 +1,28 @@
+.navbar{
+    display: flex;
+    height: 65px;
+    width: 100vw;
+    margin-bottom: 70px;
+    flex-direction: row;
+    
+}
+.menu-items{
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+}
+p{
+    margin-right: 40px;
+}
+h2{
+    margin-right: 80px;
+}
+nav{
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+}

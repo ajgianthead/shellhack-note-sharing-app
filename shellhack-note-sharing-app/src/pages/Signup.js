@@ -5,7 +5,11 @@ import { Button } from "@mui/material";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Link } from "react-router-dom";
-import { auth } from "../index";
+import { auth, db } from "../index";
+import { doc, setDoc } from "firebase/firestore";
+
+//const firebase = require("firebase");
+require("firebase/firestore");
 
 const provider = new GoogleAuthProvider();
 
@@ -14,14 +18,31 @@ const provider = new GoogleAuthProvider();
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fName, setFName] = useState("");
+  const [lName, setLName] = useState("");
+  const [username, setUsername] = useState("");
 
   //const navigate = useNavigate();
 
   return (
     <div className="container">
       <div className="login">
-        <TextField id="outlined-basic" label="First Name" variant="outlined" />
-        <TextField id="outlined-basic" label="Last Name" variant="outlined" />
+        <TextField
+          id="outlined-basic"
+          label="First Name"
+          variant="outlined"
+          onClick={(e) => {
+            setFName(e.target.value);
+          }}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Last Name"
+          variant="outlined"
+          onClick={(e) => {
+            setLName(e.target.value);
+          }}
+        />
         <TextField
           id="outlined-basic"
           label="Email"
@@ -30,7 +51,14 @@ export default function Signup() {
             setEmail(e.target.value);
           }}
         />
-        <TextField id="outlined-basic" label="Username" variant="outlined" />
+        <TextField
+          id="outlined-basic"
+          label="Username"
+          variant="outlined"
+          onClick={(e) => {
+            setUsername(e.target.value);
+          }}
+        />
         <TextField
           id="outlined-basic"
           label="Password"
@@ -51,13 +79,20 @@ export default function Signup() {
           variant="contained"
           onClick={(e) => {
             createUserWithEmailAndPassword(auth, email, password)
-              .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user);
-                //navigate("/dashboard", { replace: true });
-              })
+              .then((cred) =>
+                setDoc(doc(db, "users", cred.user.uid), {
+                  id: cred.user.uid,
+                  first: fName,
+                  last: lName,
+                  email: email,
+                  username: username,
+                  password: password,
+                  friends: 0,
+                  notes: 0,
+                })
+              )
               .catch((error) => {
-                console.log(error);
+                console.log("Error adding document: ", error);
               });
           }}
         >
