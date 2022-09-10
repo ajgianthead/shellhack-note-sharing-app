@@ -8,7 +8,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const auth = getAuth();
@@ -16,7 +16,7 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  let navigate = useNavigate();
+  //let navigate = useNavigate();
 
   return (
     <div className="container">
@@ -50,7 +50,8 @@ export default function Login() {
             signInWithEmailAndPassword(auth, email, password)
               .then((userCredential) => {
                 const user = userCredential.user;
-                navigate("/dashboard");
+                //navigate("/dashboard", { replace: true });
+                console.log(user);
               })
               .catch((error) => {
                 console.log(error);
@@ -68,7 +69,8 @@ export default function Login() {
                   GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
                 const user = result.user;
-                navigate("/dashboard");
+                console.log(user, token);
+                //navigate("/dashboard", { replace: true });
               })
               .catch((error) => {
                 console.log(error);
