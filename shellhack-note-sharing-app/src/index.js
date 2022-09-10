@@ -9,6 +9,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import Explore from "./pages/Explore";
+import Friends from "./pages/Friends";
+
 
 import { getAuth } from "firebase/auth";
 
@@ -34,6 +37,8 @@ root.render(
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/explore" element={<Explore />} />
+      <Route path="/friends" element={<Friends />} />
     </Routes>
   </BrowserRouter>
 );

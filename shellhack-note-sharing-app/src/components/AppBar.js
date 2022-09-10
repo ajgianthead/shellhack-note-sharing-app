@@ -12,10 +12,10 @@ export default function () {
           <Link to="/dashboard" style={{ textDecoration: "none" }}>
             <p>Dashboard</p>
           </Link>
-          <Link to="/dashboard" style={{ textDecoration: "none" }}>
+          <Link to="/explore" style={{ textDecoration: "none" }}>
             <p>Explore</p>
           </Link>
-          <Link to="/dashboard" style={{ textDecoration: "none" }}>
+          <Link to="/friends" style={{ textDecoration: "none" }}>
             <p>Friends</p>
           </Link>
         </div>

@@ -6,6 +6,8 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import "./Tabs.css";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+
 
 export default function Tabs() {
   const [value, setValue] = React.useState("1");
