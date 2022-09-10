@@ -9,9 +9,10 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { auth } from "../index";
 
 export default function Login() {
-  const auth = getAuth();
+  //const auth = getAuth();
   const provider = new GoogleAuthProvider();
 
   const [email, setEmail] = useState("");

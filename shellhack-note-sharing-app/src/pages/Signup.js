@@ -5,10 +5,11 @@ import { Button } from "@mui/material";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { auth } from "../index";
 
 const provider = new GoogleAuthProvider();
 
-const auth = getAuth();
+//const auth = getAuth();
 
 export default function Signup() {
   const [email, setEmail] = useState("");
