@@ -1,3 +1,4 @@
+
 .container {
   display: flex;
   justify-content: center;
@@ -5,11 +6,16 @@
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  
-  
 }
 p{
-    color: black;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    align-self: auto;
+    margin-left: 50px;
+    margin-right: auto;
+}
+.login-button{
+  margin-bottom: 1vw;
 }
 .login{
     display: flex;
@@ -20,4 +26,11 @@ p{
     height: 500px;
     border: 2px solid black;
     border-radius: 20px;
+}
+
+.email-text .password-text {
+  margin-left: 20px;  
+}
+.email-text {
+  margin-bottom: 1vw;
 }

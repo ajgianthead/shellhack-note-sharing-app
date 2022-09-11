@@ -1,7 +1,8 @@
 import React from "react";
-import Button from "../components/Button";
+// import Button from "../components/Button";
 import "../App.css";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material"
 
 export default function LandingPage() {
   return (
@@ -17,10 +18,10 @@ export default function LandingPage() {
           </p>
           <div className="b-container">
             <Link to={"/login"}>
-              <Button title="Login" />
+              <Button variant="outlined" size="large" color="success">Login</Button>
             </Link>
             <Link to={"/signup"}>
-              <Button title="Sign Up" />
+              <Button variant="outlined" size="large">Sign Up</Button>
             </Link>
           </div>
         </div>

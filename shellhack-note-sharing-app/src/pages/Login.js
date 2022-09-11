@@ -22,6 +22,7 @@ export default function Login() {
   return (
     <div className="container">
       <div className="login">
+        <div className="email-text">
         <TextField
           id="outlined-basic"
           label="Email"
@@ -30,6 +31,8 @@ export default function Login() {
             setEmail(e.target.value);
           }}
         />
+        </div>
+        <div className="password-text">
         <TextField
           id="outlined-basic"
           label="Password"
@@ -39,12 +42,14 @@ export default function Login() {
             setPassword(e.target.value);
           }}
         />
+        </div>
         <p>
-          Don't have an account?
+          Don't have an account?&nbsp;&nbsp;
           <span>
             <Link to={"/signup"}>Sign Up</Link>
           </span>
         </p>
+        <span className="login-button">
         <Button
           variant="contained"
           onClick={(e) => {
@@ -61,6 +66,7 @@ export default function Login() {
         >
           Login
         </Button>
+        </span>
         <Button
           variant="outlined"
           onClick={(e) => {
