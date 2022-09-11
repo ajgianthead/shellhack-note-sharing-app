@@ -6,6 +6,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { auth } from "../index";
+import IMAGE from "../assets/gatorlogo.png"
 
 const provider = new GoogleAuthProvider();
 
@@ -19,7 +20,8 @@ export default function Signup() {
 
   return (
     <div className="container">
-      <div className="login">
+      <img src={IMAGE}></img>
+      <div className="signup">
         <TextField id="outlined-basic" label="First Name" variant="outlined" />
         <TextField id="outlined-basic" label="Last Name" variant="outlined" />
         <TextField
@@ -40,8 +42,8 @@ export default function Signup() {
             setPassword(e.target.value);
           }}
         />
-        <p>
-          Already have an account?
+        <p className="login-text">
+          Already have an account?&nbsp;&nbsp;
           <span>
             <Link to={"/login"}>Login</Link>
           </span>

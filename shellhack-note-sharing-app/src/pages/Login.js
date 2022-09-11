@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { auth } from "../index";
+import IMAGE from "../assets/notepen-removebg-preview.png";
 
 export default function Login() {
   //const auth = getAuth();
@@ -21,6 +22,7 @@ export default function Login() {
 
   return (
     <div className="container">
+      <img src={IMAGE} alt="a pen"></img>
       <div className="login">
         <div className="email-text">
         <TextField
@@ -31,6 +33,7 @@ export default function Login() {
             setEmail(e.target.value);
           }}
         />
+        
         </div>
         <div className="password-text">
         <TextField
@@ -43,50 +46,59 @@ export default function Login() {
           }}
         />
         </div>
-        <p>
+        <p className="signup-text">
           Don't have an account?&nbsp;&nbsp;
           <span>
             <Link to={"/signup"}>Sign Up</Link>
           </span>
         </p>
-        <span className="login-button">
-        <Button
-          variant="contained"
-          onClick={(e) => {
-            signInWithEmailAndPassword(auth, email, password)
-              .then((userCredential) => {
-                const user = userCredential.user;
-                //navigate("/dashboard", { replace: true });
-                console.log(user);
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          }}
-        >
-          Login
-        </Button>
-        </span>
-        <Button
-          variant="outlined"
-          onClick={(e) => {
-            signInWithPopup(auth, provider)
-              .then((result) => {
-                const credential =
-                  GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                const user = result.user;
-                console.log(user, token);
-                //navigate("/dashboard", { replace: true });
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          }}
-        >
-          Login with Google
-        </Button>
+        <div className="login-email">
+          <Button
+            variant="contained"
+            onClick={(e) => {
+              signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                  const user = userCredential.user;
+                  //navigate("/dashboard", { replace: true });
+                  console.log(user);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            }}
+          >
+            Login
+          </Button>
+        </div>
+
+        <div className="login-google">
+          <Button
+            variant="outlined"
+            onClick={(e) => {
+              signInWithPopup(auth, provider)
+                .then((result) => {
+                  const credential =
+                    GoogleAuthProvider.credentialFromResult(result);
+                  const token = credential.accessToken;
+                  const user = result.user;
+                  console.log(user, token);
+                  //navigate("/dashboard", { replace: true });
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            }}
+          >
+            Login with Google
+          </Button>
+        </div>
       </div>
+      <footer>
+        <small><a href="tel:9045767897">Terms</a></small>
+        <small><a href="tel:9045767897">Privacy</a></small>
+        <small><a href="tel:9045767897">Security</a></small>
+        <small><a href="tel:9045767897">Contact</a></small>
+      </footer>
     </div>
   );
 }
