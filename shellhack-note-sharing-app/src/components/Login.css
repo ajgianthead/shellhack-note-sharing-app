@@ -1,3 +1,4 @@
+
 .container {
   display: flex;
   justify-content: center;
@@ -5,19 +6,68 @@
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  
-  
 }
 p{
-    color: black;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    align-self: auto;
+    margin-left: 50px;
+    margin-right: auto;
 }
-.login{
+.login-button{
+  margin-bottom: 1vw;
+}
+.login,.signup{
+    max-height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    width: 400px;
-    height: 500px;
+    width: 500px;
+    height: 600px;
     border: 2px solid black;
-    border-radius: 20px;
+    border-radius: 20px;   
+    margin-top: -7vh;
+}
+img {
+  margin-top: -5vh;
+}
+
+.login{
+  justify-content: center;
+  height:350px;
+  margin-top: 3vh;
+}
+
+.email-text,.password-text {
+  margin-top: 30px;
+}
+
+.login-text, .signup-text {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -7px;
+  margin-bottom: 5px;
+}
+
+.signup-text {
+  margin-top: 4px;
+  margin-bottom: 15px;
+}
+
+.login-google, .login-email {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.login-google {
+  margin-bottom: 24px;
+}
+
+Footer {
+  margin-top:10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 30vh;
 }
