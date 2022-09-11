@@ -5,18 +5,13 @@ import { Button } from "@mui/material";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import { auth, db, userID } from "../index";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
+import IMAGE from "../assets/gatorlogo.png";
 
 //const firebase = require("firebase");
 require("firebase/firestore");
-=======
-import { auth } from "../index";
-import IMAGE from "../assets/gatorlogo.png"
->>>>>>> frontend
 
 const provider = new GoogleAuthProvider();
 
@@ -32,8 +27,8 @@ export default function Signup() {
   const navigator = useNavigate();
   return (
     <div className="container">
-<<<<<<< HEAD
-      <div className="login">
+      <img src={IMAGE}></img>
+      <div className="signup">
         <TextField
           id="outlined-basic"
           label="First Name"
@@ -50,12 +45,8 @@ export default function Signup() {
             setLName(e.target.value);
           }}
         />
-=======
-      <img src={IMAGE}></img>
-      <div className="signup">
-        <TextField id="outlined-basic" label="First Name" variant="outlined" />
+
         <TextField id="outlined-basic" label="Last Name" variant="outlined" />
->>>>>>> frontend
         <TextField
           id="outlined-basic"
           label="Email"

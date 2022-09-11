@@ -10,12 +10,8 @@ import {
 } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { auth } from "../index";
-
-<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
-=======
 import IMAGE from "../assets/notepen-removebg-preview.png";
->>>>>>> frontend
 
 export default function Login() {
   //const auth = getAuth();
@@ -30,26 +26,25 @@ export default function Login() {
       <img src={IMAGE} alt="a pen"></img>
       <div className="login">
         <div className="email-text">
-        <TextField
-          id="outlined-basic"
-          label="Email"
-          variant="outlined"
-          onClick={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        
+          <TextField
+            id="outlined-basic"
+            label="Email"
+            variant="outlined"
+            onClick={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
         </div>
         <div className="password-text">
-        <TextField
-          id="outlined-basic"
-          label="Password"
-          variant="outlined"
-          style={{ paddingBottom: "20px" }}
-          onClick={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
+          <TextField
+            id="outlined-basic"
+            label="Password"
+            variant="outlined"
+            style={{ paddingBottom: "20px" }}
+            onClick={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
         </div>
         <p className="signup-text">
           Don't have an account?&nbsp;&nbsp;
@@ -57,43 +52,6 @@ export default function Login() {
             <Link to={"/signup"}>Sign Up</Link>
           </span>
         </p>
-<<<<<<< HEAD
-        <Button
-          variant="contained"
-          onClick={(e) => {
-            signInWithEmailAndPassword(auth, email, password)
-              .then((userCredential) => {
-                const user = userCredential.user;
-                navigator("/dashboard");
-                console.log(user);
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          }}
-        >
-          Login
-        </Button>
-        <Button
-          variant="outlined"
-          onClick={(e) => {
-            signInWithPopup(auth, provider)
-              .then((result) => {
-                const credential =
-                  GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                const user = result.user;
-                console.log(user, token);
-                navigator("/dashboard");
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          }}
-        >
-          Login with Google
-        </Button>
-=======
         <div className="login-email">
           <Button
             variant="contained"
@@ -101,7 +59,7 @@ export default function Login() {
               signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                   const user = userCredential.user;
-                  //navigate("/dashboard", { replace: true });
+                  navigator("/dashboard");
                   console.log(user);
                 })
                 .catch((error) => {
@@ -124,7 +82,7 @@ export default function Login() {
                   const token = credential.accessToken;
                   const user = result.user;
                   console.log(user, token);
-                  //navigate("/dashboard", { replace: true });
+                  navigator("/dashboard");
                 })
                 .catch((error) => {
                   console.log(error);
@@ -134,13 +92,20 @@ export default function Login() {
             Login with Google
           </Button>
         </div>
->>>>>>> frontend
       </div>
       <footer>
-        <small><a href="tel:9045767897">Terms</a></small>
-        <small><a href="tel:9045767897">Privacy</a></small>
-        <small><a href="tel:9045767897">Security</a></small>
-        <small><a href="tel:9045767897">Contact</a></small>
+        <small>
+          <a href="tel:9045767897">Terms</a>
+        </small>
+        <small>
+          <a href="tel:9045767897">Privacy</a>
+        </small>
+        <small>
+          <a href="tel:9045767897">Security</a>
+        </small>
+        <small>
+          <a href="tel:9045767897">Contact</a>
+        </small>
       </footer>
     </div>
   );
