@@ -11,12 +11,13 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import TabPanel from "@mui/lab/TabPanel";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "./Tabs.css";
 import { Button, Divider, TextField } from "@mui/material";
 import Note from "./Note";
-import { FilePicker } from "react-file-picker";
+import { ref, uploadBytes } from "firebase/storage";
+import { storage } from "../index";
+import { v4 } from "uuid";
 
 const style = {
   position: "absolute",
@@ -33,12 +34,20 @@ const style = {
 export default function Tabs() {
   const [value, setValue] = React.useState("1");
   const [open, setOpen] = useState(false);
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const uploadFile = () => {
+    if (file === "") return;
+    const fileRef = ref(storage, `images/${file.name + v4()}`);
+    uploadBytes(fileRef, file).then(() => {
+      alert("File Uploaded");
+    });
+  };
+
   return (
     <div>
       <TabContext value={value} sty>
@@ -167,6 +176,7 @@ export default function Tabs() {
                 backgroundColor: "Blue",
                 color: "white",
               }}
+              onClick={uploadFile}
             >
               Add Note
             </Button>

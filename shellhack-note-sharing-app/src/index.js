@@ -11,11 +11,11 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Explore from "./pages/Explore";
 import Friends from "./pages/Friends";
-
+import { getStorage } from "firebase/storage";
 
 import { getAuth } from "firebase/auth";
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyAkrvEqPGeNypXB4NiwqURGEb2-Z6D8B1k",
   authDomain: "shellhack1.firebaseapp.com",
   projectId: "shellhack1",
@@ -26,6 +26,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+export const storage = getStorage(app);
 const db = getFirestore();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -43,4 +44,4 @@ root.render(
   </BrowserRouter>
 );
 
-export { auth, db };
+export { auth, db, app };
