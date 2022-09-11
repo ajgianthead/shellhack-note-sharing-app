@@ -16,8 +16,8 @@ import "./Tabs.css";
 import { Button, Divider, TextField } from "@mui/material";
 import Note from "./Note";
 import { ref, uploadBytes } from "firebase/storage";
-import { storage } from "../index";
-import { v4 } from "uuid";
+import { storage, db, userID } from "../index";
+import { arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
 
 const style = {
   position: "absolute",
@@ -34,6 +34,9 @@ const style = {
 export default function Tabs() {
   const [value, setValue] = React.useState("1");
   const [open, setOpen] = useState(false);
+  const [noteName, setNoteName] = useState("");
+  const [decrib, setDescrib] = useState("");
+  const [isVisibile, setIsVisibile] = useState(true);
   const [file, setFile] = useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -42,9 +45,19 @@ export default function Tabs() {
   };
   const uploadFile = () => {
     if (file === "") return;
-    const fileRef = ref(storage, `images/${file.name + v4()}`);
+    const fileRef = ref(storage, `images/${file.name}`);
     uploadBytes(fileRef, file).then(() => {
       alert("File Uploaded");
+    });
+    setDoc(doc(db, "notes", file.name), {
+      name: noteName,
+      file_name: file.name,
+      describ: decrib,
+      isVisibile: isVisibile,
+    });
+    const userRef = doc(db, "users", userID);
+    updateDoc(userRef, {
+      notes: arrayUnion(file.name),
     });
   };
 
@@ -116,16 +129,24 @@ export default function Tabs() {
               }}
             />
           </Button>
-          <p>{file.name}</p>
+          <p>{file ? file.name : null}</p>
           <Divider />
           <p>Name Your Note(s)</p>
-          <TextField placeholder="Name" />
+          <TextField
+            placeholder="Name"
+            onChange={(e) => {
+              setNoteName(e.target.value);
+            }}
+          />
           <p>Describe Your Note(s)</p>
           <TextField
             placeholder="Describe"
             multiline
             rows={"4"}
             style={{ marginBottom: "20px" }}
+            onChange={(e) => {
+              setDescrib(e.target.value);
+            }}
           />
           <Divider />
           <div style={{ display: "flex", flexDirection: "row" }}>
@@ -135,7 +156,7 @@ export default function Tabs() {
               </FormLabel>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="female"
+                defaultValue="public"
                 name="radio-buttons-group"
                 row
                 style={{ marginBottom: "20px" }}
@@ -144,11 +165,17 @@ export default function Tabs() {
                   value="public"
                   control={<Radio />}
                   label="Public"
+                  onClick={(e) => {
+                    setIsVisibile(true);
+                  }}
                 />
                 <FormControlLabel
                   value="private"
                   control={<Radio />}
                   label="Private"
+                  onClick={(e) => {
+                    setIsVisibile(false);
+                  }}
                 />
               </RadioGroup>
             </FormControl>

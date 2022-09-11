@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "../components/Login.css";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Link } from "react-router-dom";
-import { auth, db } from "../index";
+import { auth, db, userID } from "../index";
 import { doc, setDoc } from "firebase/firestore";
 
 //const firebase = require("firebase");
@@ -79,7 +79,8 @@ export default function Signup() {
           variant="contained"
           onClick={(e) => {
             createUserWithEmailAndPassword(auth, email, password)
-              .then((cred) =>
+              .then((cred) => {
+                //userID = cred.user.uid;
                 setDoc(doc(db, "users", cred.user.uid), {
                   id: cred.user.uid,
                   first: fName,
@@ -88,9 +89,9 @@ export default function Signup() {
                   username: username,
                   password: password,
                   friends: 0,
-                  notes: 0,
-                })
-              )
+                  notes: [],
+                });
+              })
               .catch((error) => {
                 console.log("Error adding document: ", error);
               });
@@ -107,6 +108,7 @@ export default function Signup() {
                   GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
                 const user = result.user;
+                userID = result.user.uid;
                 console.log(user, token);
                 //navigate("/dashboard", { replace: true });
               })

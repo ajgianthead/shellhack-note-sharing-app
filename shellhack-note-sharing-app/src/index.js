@@ -28,6 +28,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 export const storage = getStorage(app);
 const db = getFirestore();
+export var userID;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
