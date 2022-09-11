@@ -13,7 +13,7 @@ import Explore from "./pages/Explore";
 import Friends from "./pages/Friends";
 import { getStorage } from "firebase/storage";
 
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAkrvEqPGeNypXB4NiwqURGEb2-Z6D8B1k",
@@ -29,6 +29,16 @@ const auth = getAuth(app);
 export const storage = getStorage(app);
 const db = getFirestore();
 export var userID;
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

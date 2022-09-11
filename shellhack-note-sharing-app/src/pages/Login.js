@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { auth } from "../index";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   //const auth = getAuth();
@@ -17,7 +18,7 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //let navigate = useNavigate();
+  const navigator = useNavigate();
 
   return (
     <div className="container">
@@ -51,7 +52,7 @@ export default function Login() {
             signInWithEmailAndPassword(auth, email, password)
               .then((userCredential) => {
                 const user = userCredential.user;
-                //navigate("/dashboard", { replace: true });
+                navigator("/dashboard");
                 console.log(user);
               })
               .catch((error) => {
@@ -71,7 +72,7 @@ export default function Login() {
                 const token = credential.accessToken;
                 const user = result.user;
                 console.log(user, token);
-                //navigate("/dashboard", { replace: true });
+                navigator("/dashboard");
               })
               .catch((error) => {
                 console.log(error);

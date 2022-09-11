@@ -7,6 +7,8 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { auth, db, userID } from "../index";
 import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 //const firebase = require("firebase");
 require("firebase/firestore");
@@ -22,8 +24,7 @@ export default function Signup() {
   const [lName, setLName] = useState("");
   const [username, setUsername] = useState("");
 
-  //const navigate = useNavigate();
-
+  const navigator = useNavigate();
   return (
     <div className="container">
       <div className="login">
@@ -91,6 +92,7 @@ export default function Signup() {
                   friends: 0,
                   notes: [],
                 });
+                navigator("/dashboard");
               })
               .catch((error) => {
                 console.log("Error adding document: ", error);
@@ -110,7 +112,7 @@ export default function Signup() {
                 const user = result.user;
                 userID = result.user.uid;
                 console.log(user, token);
-                //navigate("/dashboard", { replace: true });
+                navigator("/dashboard");
               })
               .catch((error) => {
                 console.log(error);
